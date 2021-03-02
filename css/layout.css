@@ -3,12 +3,41 @@
 }
 
 .container {
+  display: flex;
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  border: 1pt;
+  border-color: rgb(0, 0, 0);
+  background-color: grey;
 }
 
+/* I Added */
+.column {
+  flex-basis: calc(100% / 2);
+}
+
+.col-half {
+  flex-basis: 50%;
+}
+
+.title-code-journal {
+  display: block;
+  background: grey;
+  padding: 0.25em 1em;
+  margin-bottom: 1em;
+}
+
+.item {
+  flex-grow: 1;
+  height: 20%;
+  width: 20%;
+}
+
+/* I Added */
+
 .row {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }

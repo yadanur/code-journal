@@ -14,12 +14,68 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
+
 <body>
-  <header>
+  <header class="title-code-journal">
+    <div class="title-code-journal container" style="padding-inline-end: 0;">
+      <h1>Code Journal</h1>
+    </div>
   </header>
-  <main>
-  </main>
+
+  <div class="container">
+      <img alt="image placeholder" src="images/placeholder-image-square.jpg" class="item col-half" id="imageToLoad">
+<!-- Form Starts -->
+    <div class="col-half">
+      <div data-view="entry-form">
+        <p>
+          <form class="column-full item" id="input-form">
+            <label for="image-url" required >Image URL: </label><br>
+            <input oninput="loadImage()"  class="row" type="text" id="image-url" placeholder="Type the URL of your image" required /><br>
+            <label for="image-title">Title: </label><br>
+            <input class="row" type="text" id="image-title" required /><br>
+            <label for="image-details">Notes: </label><br>
+            <input class="row" type="text" id="image-details" required /><br>
+            <button onclick="saveInput()" class="row" type="submit" value="Save" id="btn_save">Save</button>
+          </form>
+
+        </p>
+
+        <p id="demo"></p>
+      </div>
+    </div>
+<!-- End of Form -->
+  </div>
+
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    function loadImage(){
+      var imageUrl = document.getElementById('image-url').value;
+      document.getElementById('imageToLoad').src=imageUrl;
+    }
+
+    let journalPages = [];
+    function saveInput(events){
+      let newPage={
+        id: Date.now(),
+        imageURL: document.getElementById('image-url').value,
+        imageTitle: document.getElementById('image-title').value,
+        imageDetails: document.getElementById('image-details').value
+      }
+
+      journalPages.push(newPage);
+      document.querySelector('form').reset();
+
+      console.warn('added', {journalPages});
+
+      localStorage.setItem('MyPage', JSON.stringify(journalPages));
+
+    }
+  </script>
+
+
+
 </body>
 </html>
